@@ -77,8 +77,24 @@ zfs_decrypt_fs() {
         fi
     fi
 
+    zfs_key_creds="/etc/zfs/zfs-key.creds"
+
     # Loop until key is loaded here or by another vector (SSH, for instance)
     while [ "$(zfs get -H -o value keystatus "${encryptionroot}")" != "available" ]; do
+
+        # Try TPM2 unlock first
+        if [ -r "${zfs_key_creds}" ] && command -v systemd-creds >/dev/null 2>&1; then
+            if systemd-creds decrypt \
+                --name=zfs-key \
+                "${zfs_key_creds}" - |
+                zfs load-key "${encryptionroot}"
+            then
+                break
+            fi
+
+            echo "TPM2 ZFS unlock failed; falling back to passphrase."
+        fi
+
         # Try the default loading mechanism
         zfs load-key "${encryptionroot}" && break
 
