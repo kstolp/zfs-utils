@@ -23,13 +23,22 @@ build() {
         /lib/udev/vdev_id \
         /lib/udev/zvol_id \
         findmnt \
-        udevadm
+        udevadm \
+        systemd-analyze \
+        systemd-creds
 
     map add_file \
+        /etc/zfs/zfs-key.creds \
         /lib/udev/rules.d/60-zvol.rules \
         /lib/udev/rules.d/69-vdev.rules \
         /lib/udev/rules.d/90-zfs.rules \
-        /lib/libgcc_s.so.1
+        /lib/libgcc_s.so.1 \
+        /usr/lib/libtss2-esys.so.0 \
+        /usr/lib/libtss2-mu.so.0 \
+        /usr/lib/libtss2-rc.so.0 \
+        /usr/lib/libtss2-sys.so.1 \
+        /usr/lib/libtss2-tcti-device.so.0 \
+        /usr/lib/libtss2-tctildr.so.0
 
     map add_dir \
         /etc/zfs/zed.d
