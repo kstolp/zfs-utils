@@ -4,11 +4,12 @@
 
 pkgname=zfs-utils
 pkgver=2.4.3
-pkgrel=1
+pkgrel=2
 pkgdesc="Userspace utilities for the Zettabyte File System."
 arch=("i686" "x86_64" "aarch64")
 url="https://zfsonlinux.org/"
 license=('CDDL')
+depends=('tpm2-tss')
 optdepends=('python: for arcstat/arc_summary/dbufstat')
 source=("https://github.com/zfsonlinux/zfs/releases/download/zfs-${pkgver}/zfs-${pkgver}.tar.gz"{,.asc}
         "zfs-node-permission.conf"

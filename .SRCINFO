@@ -1,12 +1,13 @@
 pkgbase = zfs-utils
 	pkgdesc = Userspace utilities for the Zettabyte File System.
 	pkgver = 2.4.3
-	pkgrel = 1
+	pkgrel = 2
 	url = https://zfsonlinux.org/
 	arch = i686
 	arch = x86_64
 	arch = aarch64
 	license = CDDL
+	depends = tpm2-tss
 	optdepends = python: for arcstat/arc_summary/dbufstat
 	backup = etc/default/zfs
 	backup = etc/zfs/zed.d/zed.rc
