@@ -17,4 +17,9 @@ Verify that it works:
 
     systemd-creds decrypt --name=zfs-key /etc/zfs/zfs-key.creds
 
+Don't forget to add `zfs` to the `mkinitcpio.conf` `HOOKS`, and then
+regenerate the initramfs image:
+
+    mkinitcpio -P
+
 Sealing the key using various TPM2 PCRS is beyond the scope of this guide.
